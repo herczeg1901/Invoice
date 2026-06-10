@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Preview — AUTO SERVICES</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    padding: 24px 16px 60px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-label {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* Invoice paper */
+  .invoice {
+    background: #fff;
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* Header bar */
+  .inv-header {
+    background: #111;
+    padding: 32px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .inv-logo-area {}
+
+  .inv-logo-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+
+  .inv-logo-name span {
+    color: #e53e3e;
+  }
+
+  .inv-tagline {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .inv-title-area {
+    text-align: right;
+  }
+
+  .inv-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #e53e3e;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+
+  .inv-ref {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .inv-ref strong {
+    color: #ccc;
+  }
+
+  /* Red accent stripe */
+  .inv-stripe {
+    height: 4px;
+    background: linear-gradient(90deg, #e53e3e, #c53030);
+  }
+
+  /* Info row */
+  .inv-info {
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .inv-info-block {}
+
+  .inv-info-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 6px;
+  }
+
+  .inv-info-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.5;
+  }
+
+  .inv-info-value.reg {
+    font-size: 15px;
+    font-weight: 800;
+    background: #111;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* Business address block */
+  .inv-address {
+    padding: 0 36px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .inv-address-block {}
+
+  .inv-address-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .inv-address-text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.7;
+  }
+
+  /* Line items table */
+  .inv-table-wrap {
+    padding: 24px 36px;
+  }
+
+  .inv-table-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    background: #111;
+  }
+
+  thead th {
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ccc;
+    text-align: left;
+  }
+
+  thead th:last-child {
+    text-align: right;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #f4f4f4;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+
+  tbody td {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #333;
+  }
+
+  tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #111;
+  }
+
+  /* Totals */
+  .inv-totals {
+    padding: 0 36px 28px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .inv-totals-box {
+    width: 240px;
+  }
+
+  .inv-total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .inv-total-row.final {
+    border-bottom: none;
+    border-top: 2px solid #111;
+    margin-top: 4px;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .inv-total-row.vat {
+    color: #999;
+    font-size: 12px;
+  }
+
+  /* Status badge */
+  .inv-status-bar {
+    padding: 16px 36px;
+    background: #fff8f8;
+    border-top: 1px solid #ffe0e0;
+    border-bottom: 1px solid #ffe0e0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-badge {
+    background: #e53e3e;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
+  .status-badge.paid {
+    background: #38a169;
+  }
+
+  .inv-due-text {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .inv-due-text strong {
+    color: #e53e3e;
+  }
+
+  /* Notes */
+  .inv-notes {
+    padding: 20px 36px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .inv-notes-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .inv-notes-text {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.7;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 12px;
+  }
+
+  /* Footer */
+  .inv-footer {
+    background: #111;
+    padding: 20px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .inv-footer-left {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .inv-footer-right {
+    text-align: right;
+  }
+
+  .inv-footer-warranty {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .inv-footer-warranty strong {
+    color: #e53e3e;
+  }
+
+  /* Print / download button */
+  .btn-bar {
+    max-width: 680px;
+    margin: 20px auto 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .btn {
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+  }
+
+  .btn.secondary {
+    background: #333;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page-label, .btn-bar { display: none; }
+    .invoice { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-label">Invoice Preview — this is what your customer receives</div>
+
+<div class="invoice">
+
+  <!-- Header -->
+  <div class="inv-header">
+    <div class="inv-logo-area">
+      <div class="inv-logo-name">AUTO<span> SERVICES</span></div>
+      <div class="inv-tagline">Car Service & Brake Specialists</div>
+    </div>
+    <div class="inv-title-area">
+      <div class="inv-title">Invoice</div>
+      <div class="inv-ref">Ref: <strong>#INV-0047</strong></div>
+    </div>
+  </div>
+
+  <div class="inv-stripe"></div>
+
+  <!-- Vehicle & dates -->
+  <div class="inv-info">
+    <div class="inv-info-block">
+      <div class="inv-info-label">Vehicle Reg</div>
+      <div class="inv-info-value reg">AB21 XYZ</div>
+    </div>
+    <div class="inv-info-block">
+      <div class="inv-info-label">Make & Model</div>
+      <div class="inv-info-value">Ford Focus 1.5 TDCI</div>
+    </div>
+    <div class="inv-info-block">
+      <div class="inv-info-label">Date of Work</div>
+      <div class="inv-info-value">10 June 2026</div>
+    </div>
+    <div class="inv-info-block">
+      <div class="inv-info-label">Invoice Date</div>
+      <div class="inv-info-value">10 June 2026</div>
+    </div>
+    <div class="inv-info-block">
+      <div class="inv-info-label">Payment Due</div>
+      <div class="inv-info-value">17 June 2026</div>
+    </div>
+    <div class="inv-info-block">
+      <div class="inv-info-label">Technician</div>
+      <div class="inv-info-value">Stephen H.</div>
+    </div>
+  </div>
+
+  <!-- Addresses -->
+  <div class="inv-address" style="padding-top:24px;">
+    <div class="inv-address-block">
+      <div class="inv-address-label">Bill To</div>
+      <div class="inv-address-text">
+        <strong>James Robertson</strong><br>
+        07700 900 123<br>
+        james@example.co.uk
+      </div>
+    </div>
+    <div class="inv-address-block">
+      <div class="inv-address-label">From</div>
+      <div class="inv-address-text">
+        <strong>Auto Services</strong><br>
+        14 Industrial Way<br>
+        Your Town, AB1 2CD<br>
+        01234 567 890<br>
+        hello@yourgarage.co.uk
+      </div>
+    </div>
+  </div>
+
+  <!-- Line items -->
+  <div class="inv-table-wrap">
+    <div class="inv-table-label">Work Carried Out</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th style="text-align:right">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full Car Service (inc. oil & filter change, air filter, pollen filter, fluid top-ups)</td>
+          <td>£125.00</td>
+        </tr>
+        <tr>
+          <td>Front Brake Discs & Pads — OEM spec, both sides</td>
+          <td>£149.00</td>
+        </tr>
+        <tr>
+          <td>Brake Fluid Flush & Replacement</td>
+          <td>£35.00</td>
+        </tr>
+        <tr>
+          <td>Vehicle Health Check & Advisory Report</td>
+          <td>Included</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Totals -->
+  <div class="inv-totals">
+    <div class="inv-totals-box">
+      <div class="inv-total-row">
+        <span>Subtotal</span>
+        <span>£257.50</span>
+      </div>
+      <div class="inv-total-row vat">
+        <span>VAT (20%)</span>
+        <span>£51.50</span>
+      </div>
+      <div class="inv-total-row final">
+        <span>Total Due</span>
+        <span>£309.00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment status -->
+  <div class="inv-status-bar">
+    <div class="status-badge">Unpaid</div>
+    <div class="inv-due-text">Payment due by <strong>17 June 2026</strong> — bank transfer or cash accepted</div>
+  </div>
+
+  <!-- Notes -->
+  <div class="inv-notes">
+    <div class="inv-notes-label">Advisory Notes</div>
+    <div class="inv-notes-text">
+      Rear brake pads at approximately 30% — recommend replacement within 6 months or 6,000 miles. Rear tyres showing minor wear on nearside — worth monitoring at next visit. Next full service due June 2027 or 56,000 miles.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="inv-footer">
+    <div class="inv-footer-left">
+      Auto Services · 14 Industrial Way · AB1 2CD<br>
+      01234 567 890 · hello@yourgarage.co.uk<br>
+      Registered in England & Wales
+    </div>
+    <div class="inv-footer-right">
+      <div class="inv-footer-warranty">
+        <strong>12-month / 12,000-mile warranty</strong><br>
+        on all parts and labour.<br>
+        Thank you for your custom.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="btn-bar">
+  <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button class="btn secondary" onclick="alert('This button will email the PDF directly to the customer — coming soon!')">📧 Email to Customer</button>
+</div>
+
+</body>
+</html>
