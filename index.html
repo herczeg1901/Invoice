@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invoice Preview — AUTO SERVICES</title>
+<title>Invoice — AUTO SERVICES</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: #1a1a1a;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
     padding: 24px 16px 60px;
     -webkit-font-smoothing: antialiased;
   }
@@ -23,6 +22,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   /* Invoice paper */
@@ -44,18 +44,15 @@
     align-items: flex-start;
   }
 
-  .inv-logo-area {}
-
   .inv-logo-name {
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
     font-weight: 900;
     color: #fff;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.1em;
   }
 
-  .inv-logo-name span {
-    color: #e53e3e;
-  }
+  .inv-logo-name span { color: #e53e3e; }
 
   .inv-tagline {
     font-size: 11px;
@@ -63,17 +60,16 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-top: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  .inv-title-area {
-    text-align: right;
-  }
+  .inv-title-area { text-align: right; }
 
   .inv-title {
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
-    font-weight: 900;
     color: #e53e3e;
-    letter-spacing: -1px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
   }
 
@@ -81,19 +77,17 @@
     font-size: 13px;
     color: #888;
     margin-top: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  .inv-ref strong {
-    color: #ccc;
-  }
+  .inv-ref strong { color: #ccc; }
 
-  /* Red accent stripe */
   .inv-stripe {
     height: 4px;
     background: linear-gradient(90deg, #e53e3e, #c53030);
   }
 
-  /* Info row */
+  /* Info grid */
   .inv-info {
     padding: 28px 36px;
     display: grid;
@@ -102,8 +96,6 @@
     border-bottom: 1px solid #f0f0f0;
   }
 
-  .inv-info-block {}
-
   .inv-info-label {
     font-size: 10px;
     font-weight: 700;
@@ -111,6 +103,7 @@
     text-transform: uppercase;
     color: #999;
     margin-bottom: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   .inv-info-value {
@@ -131,16 +124,14 @@
     letter-spacing: 1px;
   }
 
-  /* Business address block */
+  /* Address blocks */
   .inv-address {
-    padding: 0 36px 24px;
+    padding: 24px 36px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     border-bottom: 1px solid #f0f0f0;
   }
-
-  .inv-address-block {}
 
   .inv-address-label {
     font-size: 10px;
@@ -149,6 +140,7 @@
     text-transform: uppercase;
     color: #999;
     margin-bottom: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   .inv-address-text {
@@ -158,9 +150,7 @@
   }
 
   /* Line items table */
-  .inv-table-wrap {
-    padding: 24px 36px;
-  }
+  .inv-table-wrap { padding: 24px 36px 0; }
 
   .inv-table-label {
     font-size: 10px;
@@ -169,16 +159,12 @@
     text-transform: uppercase;
     color: #999;
     margin-bottom: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
 
-  thead tr {
-    background: #111;
-  }
+  thead tr { background: #111; }
 
   thead th {
     padding: 10px 14px;
@@ -188,19 +174,13 @@
     text-transform: uppercase;
     color: #ccc;
     text-align: left;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  thead th:last-child {
-    text-align: right;
-  }
+  thead th:last-child { text-align: right; }
 
-  tbody tr {
-    border-bottom: 1px solid #f4f4f4;
-  }
-
-  tbody tr:nth-child(even) {
-    background: #fafafa;
-  }
+  tbody tr { border-bottom: 1px solid #f4f4f4; }
+  tbody tr:nth-child(even) { background: #fafafa; }
 
   tbody td {
     padding: 12px 14px;
@@ -216,14 +196,12 @@
 
   /* Totals */
   .inv-totals {
-    padding: 0 36px 28px;
+    padding: 16px 36px 28px;
     display: flex;
     justify-content: flex-end;
   }
 
-  .inv-totals-box {
-    width: 240px;
-  }
+  .inv-totals-box { width: 260px; }
 
   .inv-total-row {
     display: flex;
@@ -244,14 +222,11 @@
     color: #111;
   }
 
-  .inv-total-row.vat {
-    color: #999;
-    font-size: 12px;
-  }
+  .inv-total-row.vat { color: #999; font-size: 12px; }
 
-  /* Status badge */
+  /* Status bar */
   .inv-status-bar {
-    padding: 16px 36px;
+    padding: 14px 36px;
     background: #fff8f8;
     border-top: 1px solid #ffe0e0;
     border-bottom: 1px solid #ffe0e0;
@@ -261,8 +236,7 @@
   }
 
   .status-badge {
-    background: #e53e3e;
-    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -271,24 +245,15 @@
     border-radius: 4px;
   }
 
-  .status-badge.paid {
-    background: #38a169;
-  }
+  .status-badge.unpaid { background: #e53e3e; color: #fff; }
+  .status-badge.paid { background: #38a169; color: #fff; }
+  .status-badge.overdue { background: #dd6b20; color: #fff; }
 
-  .inv-due-text {
-    font-size: 12px;
-    color: #888;
-  }
-
-  .inv-due-text strong {
-    color: #e53e3e;
-  }
+  .inv-due-text { font-size: 12px; color: #888; font-family: 'Barlow Condensed', sans-serif; }
+  .inv-due-text strong { color: #e53e3e; }
 
   /* Notes */
-  .inv-notes {
-    padding: 20px 36px;
-    border-bottom: 1px solid #f0f0f0;
-  }
+  .inv-notes { padding: 20px 36px; border-bottom: 1px solid #f0f0f0; }
 
   .inv-notes-label {
     font-size: 10px;
@@ -297,6 +262,7 @@
     text-transform: uppercase;
     color: #999;
     margin-bottom: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   .inv-notes-text {
@@ -322,114 +288,345 @@
     font-size: 11px;
     color: #666;
     line-height: 1.7;
-  }
-
-  .inv-footer-right {
-    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
   .inv-footer-warranty {
     font-size: 11px;
     color: #888;
     line-height: 1.6;
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  .inv-footer-warranty strong {
-    color: #e53e3e;
+  .inv-footer-warranty strong { color: #e53e3e; }
+
+  /* Edit form overlay */
+  .edit-panel {
+    background: #141414;
+    border: 1px solid rgba(255,255,255,0.08);
+    max-width: 680px;
+    margin: 0 auto 20px;
+    padding: 1.5rem;
   }
 
-  /* Print / download button */
+  .edit-panel h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+
+  .edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .edit-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .edit-full { grid-column: 1 / -1; }
+
+  .edit-field { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .edit-field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  .edit-field input,
+  .edit-field select,
+  .edit-field textarea {
+    background: #1e1e1e;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #f0f0f0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    padding: 0.55rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .edit-field input:focus,
+  .edit-field select:focus,
+  .edit-field textarea:focus { border-color: #e53e3e; }
+
+  .edit-field textarea { min-height: 60px; resize: vertical; }
+
+  /* Line items editor */
+  .line-items-table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; }
+  .line-items-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #555;
+    text-align: left;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .line-items-table td { padding: 0.3rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .line-items-table td input {
+    background: #1e1e1e;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #f0f0f0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.5rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+  .line-items-table td input:focus { border-color: #e53e3e; }
+
+  .add-line-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px dashed rgba(255,255,255,0.12);
+    color: #555;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.15s;
+  }
+  .add-line-btn:hover { border-color: #e53e3e; color: #e53e3e; }
+
+  /* Button bar */
   .btn-bar {
     max-width: 680px;
     margin: 20px auto 0;
     display: flex;
     gap: 10px;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .btn {
-    background: #e53e3e;
-    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     border: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
+    padding: 0.75rem 1.8rem;
     cursor: pointer;
-    font-family: inherit;
-    letter-spacing: 0.3px;
+    transition: all 0.15s;
+    min-height: 44px;
   }
 
-  .btn.secondary {
-    background: #333;
+  .btn-primary { background: #e53e3e; color: #fff; }
+  .btn-primary:hover { background: #fc4d4d; }
+  .btn-secondary { background: #222; color: #aaa; border: 1px solid rgba(255,255,255,0.1); }
+  .btn-secondary:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+  .btn-green { background: #1a5c30; color: #2aaa55; border: 1px solid #2aaa55; }
+  .btn-green:hover { background: #2aaa55; color: #fff; }
+
+  /* ── Pre-fill banner — shown when data arrives from Service Report ── */
+  .prefill-banner {
+    display: none;
+    max-width: 680px;
+    margin: 0 auto 12px;
+    background: #1a3a1a;
+    border: 1px solid #2aaa55;
+    border-left: 4px solid #2aaa55;
+    padding: 0.75rem 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    color: #2aaa55;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
+  .prefill-banner.show { display: flex; }
+  .prefill-banner-close {
+    background: none; border: none; color: #2aaa55;
+    cursor: pointer; font-size: 1rem; line-height: 1;
+    opacity: 0.7; flex-shrink: 0;
+  }
+  .prefill-banner-close:hover { opacity: 1; }
 
   @media print {
     body { background: #fff; padding: 0; }
-    .page-label, .btn-bar { display: none; }
+    .page-label, .btn-bar, .edit-panel, .prefill-banner { display: none !important; }
     .invoice { box-shadow: none; border-radius: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .inv-header { padding: 20px; flex-direction: column; gap: 12px; }
+    .inv-title-area { text-align: left; }
+    .inv-info { padding: 16px 20px; grid-template-columns: 1fr 1fr; }
+    .inv-address { padding: 16px 20px; }
+    .inv-table-wrap { padding: 16px 20px 0; }
+    .inv-totals { padding: 12px 20px 20px; }
+    .inv-status-bar { padding: 12px 20px; }
+    .inv-notes { padding: 16px 20px; }
+    .inv-footer { padding: 16px 20px; flex-direction: column; gap: 8px; text-align: center; }
+    .edit-grid { grid-template-columns: 1fr; }
+    .edit-grid-3 { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div class="page-label">Invoice Preview — this is what your customer receives</div>
+<div class="page-label">Invoice — Auto Services &nbsp;·&nbsp; Edit the fields below then print or email</div>
 
+<!-- PRE-FILL BANNER — shown when data arrives from Service Report -->
+<div class="prefill-banner" id="prefillBanner">
+  <span>✅ Invoice pre-filled from your Service Report — check the details below then print or email.</span>
+  <button class="prefill-banner-close" onclick="document.getElementById('prefillBanner').classList.remove('show')">✕</button>
+</div>
+
+<!-- EDIT PANEL -->
+<div class="edit-panel">
+  <h3>📝 Invoice Details — Edit & Preview Updates Live</h3>
+
+  <div class="edit-grid">
+    <div class="edit-field">
+      <label>Customer Name</label>
+      <input type="text" id="e-customer" placeholder="Full name" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Vehicle Reg</label>
+      <input type="text" id="e-reg" placeholder="AB12 CDE" style="text-transform:uppercase;" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Make & Model</label>
+      <input type="text" id="e-model" placeholder="Ford Focus 1.5 TDCI" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Technician</label>
+      <input type="text" id="e-tech" placeholder="e.g. Stephen H." oninput="updatePreview()">
+    </div>
+  </div>
+
+  <div class="edit-grid edit-grid-3">
+    <div class="edit-field">
+      <label>Invoice Date</label>
+      <input type="date" id="e-date" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Payment Due</label>
+      <input type="date" id="e-due" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Status</label>
+      <select id="e-status" onchange="updatePreview()">
+        <option value="unpaid">Unpaid</option>
+        <option value="paid">Paid</option>
+        <option value="overdue">Overdue</option>
+      </select>
+    </div>
+    <div class="edit-field">
+      <label>Customer Phone</label>
+      <input type="tel" id="e-phone" placeholder="07700 900000" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Customer Email</label>
+      <input type="email" id="e-email" placeholder="customer@email.com" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
+      <label>Invoice Ref</label>
+      <input type="text" id="e-ref" oninput="updatePreview()">
+    </div>
+  </div>
+
+  <div style="margin-bottom:0.5rem;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-bottom:0.5rem;">Line Items (Description + Price exc. VAT)</div>
+    <table class="line-items-table">
+      <thead>
+        <tr>
+          <th style="width:75%">Description</th>
+          <th style="width:25%">Price (£ exc. VAT)</th>
+        </tr>
+      </thead>
+      <tbody id="lineItemsBody">
+        <tr>
+          <td><input type="text" placeholder="e.g. Full car service inc. oil & filter" oninput="updatePreview()"></td>
+          <td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="e.g. Front brake discs & pads" oninput="updatePreview()"></td>
+          <td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="e.g. Vehicle health check" oninput="updatePreview()"></td>
+          <td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="add-line-btn" onclick="addLineItem()">+ Add Line Item</button>
+  </div>
+
+  <div class="edit-grid" style="margin-top:0.75rem;">
+    <div class="edit-field edit-full">
+      <label>Advisory Notes (shown on invoice)</label>
+      <textarea id="e-notes" placeholder="e.g. Rear brake pads at 30% — recommend replacement within 6 months. Next service due June 2027." oninput="updatePreview()"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- INVOICE PREVIEW -->
 <div class="invoice">
 
-  <!-- Header -->
   <div class="inv-header">
-    <div class="inv-logo-area">
+    <div>
       <div class="inv-logo-name">AUTO<span> SERVICES</span></div>
       <div class="inv-tagline">Car Service & Brake Specialists</div>
     </div>
     <div class="inv-title-area">
       <div class="inv-title">Invoice</div>
-      <div class="inv-ref">Ref: <strong>#INV-0047</strong></div>
+      <div class="inv-ref">Ref: <strong id="p-ref">#INV-0001</strong></div>
     </div>
   </div>
 
   <div class="inv-stripe"></div>
 
-  <!-- Vehicle & dates -->
   <div class="inv-info">
-    <div class="inv-info-block">
+    <div>
       <div class="inv-info-label">Vehicle Reg</div>
-      <div class="inv-info-value reg">AB21 XYZ</div>
+      <div class="inv-info-value reg" id="p-reg">—</div>
     </div>
-    <div class="inv-info-block">
+    <div>
       <div class="inv-info-label">Make & Model</div>
-      <div class="inv-info-value">Ford Focus 1.5 TDCI</div>
+      <div class="inv-info-value" id="p-model">—</div>
     </div>
-    <div class="inv-info-block">
-      <div class="inv-info-label">Date of Work</div>
-      <div class="inv-info-value">10 June 2026</div>
-    </div>
-    <div class="inv-info-block">
-      <div class="inv-info-label">Invoice Date</div>
-      <div class="inv-info-value">10 June 2026</div>
-    </div>
-    <div class="inv-info-block">
-      <div class="inv-info-label">Payment Due</div>
-      <div class="inv-info-value">17 June 2026</div>
-    </div>
-    <div class="inv-info-block">
+    <div>
       <div class="inv-info-label">Technician</div>
-      <div class="inv-info-value">Stephen H.</div>
+      <div class="inv-info-value" id="p-tech">—</div>
+    </div>
+    <div>
+      <div class="inv-info-label">Invoice Date</div>
+      <div class="inv-info-value" id="p-date">—</div>
+    </div>
+    <div>
+      <div class="inv-info-label">Payment Due</div>
+      <div class="inv-info-value" id="p-due">—</div>
+    </div>
+    <div>
+      <div class="inv-info-label">Status</div>
+      <div class="inv-info-value" id="p-status-info">Unpaid</div>
     </div>
   </div>
 
-  <!-- Addresses -->
-  <div class="inv-address" style="padding-top:24px;">
-    <div class="inv-address-block">
+  <div class="inv-address">
+    <div>
       <div class="inv-address-label">Bill To</div>
-      <div class="inv-address-text">
-        <strong>James Robertson</strong><br>
-        07700 900 123<br>
-        james@example.co.uk
+      <div class="inv-address-text" id="p-customer">
+        <strong>—</strong>
       </div>
     </div>
-    <div class="inv-address-block">
+    <div>
       <div class="inv-address-label">From</div>
       <div class="inv-address-text">
         <strong>Auto Services</strong><br>
@@ -441,75 +638,53 @@
     </div>
   </div>
 
-  <!-- Line items -->
   <div class="inv-table-wrap">
     <div class="inv-table-label">Work Carried Out</div>
     <table>
       <thead>
         <tr>
           <th>Description</th>
-          <th style="text-align:right">Amount</th>
+          <th>Amount</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Full Car Service (inc. oil & filter change, air filter, pollen filter, fluid top-ups)</td>
-          <td>£125.00</td>
-        </tr>
-        <tr>
-          <td>Front Brake Discs & Pads — OEM spec, both sides</td>
-          <td>£149.00</td>
-        </tr>
-        <tr>
-          <td>Brake Fluid Flush & Replacement</td>
-          <td>£35.00</td>
-        </tr>
-        <tr>
-          <td>Vehicle Health Check & Advisory Report</td>
-          <td>Included</td>
-        </tr>
+      <tbody id="p-line-items">
+        <tr><td colspan="2" style="padding:12px 14px;color:#999;font-style:italic;">No line items added yet</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Totals -->
   <div class="inv-totals">
     <div class="inv-totals-box">
       <div class="inv-total-row">
-        <span>Subtotal</span>
-        <span>£257.50</span>
+        <span>Subtotal (exc. VAT)</span>
+        <span id="p-subtotal">£0.00</span>
       </div>
       <div class="inv-total-row vat">
         <span>VAT (20%)</span>
-        <span>£51.50</span>
+        <span id="p-vat">£0.00</span>
       </div>
       <div class="inv-total-row final">
         <span>Total Due</span>
-        <span>£309.00</span>
+        <span id="p-total">£0.00</span>
       </div>
     </div>
   </div>
 
-  <!-- Payment status -->
   <div class="inv-status-bar">
-    <div class="status-badge">Unpaid</div>
-    <div class="inv-due-text">Payment due by <strong>17 June 2026</strong> — bank transfer or cash accepted</div>
+    <div class="status-badge unpaid" id="p-status-badge">Unpaid</div>
+    <div class="inv-due-text">Payment due by <strong id="p-due-inline">—</strong> &nbsp;·&nbsp; Bank transfer or cash accepted</div>
   </div>
 
-  <!-- Notes -->
-  <div class="inv-notes">
+  <div class="inv-notes" id="p-notes-section" style="display:none;">
     <div class="inv-notes-label">Advisory Notes</div>
-    <div class="inv-notes-text">
-      Rear brake pads at approximately 30% — recommend replacement within 6 months or 6,000 miles. Rear tyres showing minor wear on nearside — worth monitoring at next visit. Next full service due June 2027 or 56,000 miles.
-    </div>
+    <div class="inv-notes-text" id="p-notes"></div>
   </div>
 
-  <!-- Footer -->
   <div class="inv-footer">
     <div class="inv-footer-left">
       Auto Services · 14 Industrial Way · AB1 2CD<br>
       01234 567 890 · hello@yourgarage.co.uk<br>
-      Registered in England & Wales
+      Registered in England &amp; Wales
     </div>
     <div class="inv-footer-right">
       <div class="inv-footer-warranty">
@@ -523,9 +698,221 @@
 </div>
 
 <div class="btn-bar">
-  <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
-  <button class="btn secondary" onclick="alert('This button will email the PDF directly to the customer — coming soon!')">📧 Email to Customer</button>
+  <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button class="btn btn-green" onclick="emailInvoice()">📧 Email to Customer</button>
+  <button class="btn btn-secondary" onclick="resetForm()">🔄 New Invoice</button>
 </div>
 
+<script>
+  // ── INIT ──
+  window.onload = () => {
+    const today = new Date();
+    const due = new Date(today.getTime() + 14*24*60*60*1000);
+    document.getElementById('e-date').value = fmtDateInput(today);
+    document.getElementById('e-due').value = fmtDateInput(due);
+
+    // Auto-generate invoice ref
+    const ref = 'INV-' + today.getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('e-ref').value = ref;
+
+    // ── Check if data was passed from Service Report via sessionStorage ──
+    const prefill = sessionStorage.getItem('invoice_prefill');
+    if(prefill) {
+      try {
+        const d = JSON.parse(prefill);
+
+        // Fill all text fields — use empty string fallback so fields clear cleanly
+        document.getElementById('e-customer').value = d.customer || '';
+        document.getElementById('e-reg').value      = (d.reg || '').toUpperCase();
+        document.getElementById('e-model').value    = d.model || '';
+        document.getElementById('e-tech').value     = d.tech  || '';
+        document.getElementById('e-phone').value    = d.phone || '';
+        document.getElementById('e-email').value    = d.email || '';
+        document.getElementById('e-notes').value    = d.notes || '';
+
+        // Populate line items — replace blank starter rows if lines exist
+        if(d.lines && d.lines.length > 0) {
+          const tbody = document.getElementById('lineItemsBody');
+          tbody.innerHTML = '';
+          d.lines.forEach(line => {
+            const tr = document.createElement('tr');
+            // Escape any quotes in description to avoid breaking the attribute
+            const safeDesc = (line.desc || '').replace(/"/g, '&quot;');
+            tr.innerHTML = `<td><input type="text" value="${safeDesc}" oninput="updatePreview()"></td>
+              <td><input type="number" value="${line.cost > 0 ? line.cost : ''}" class="line-cost" step="0.01" placeholder="0.00" oninput="updatePreview()"></td>`;
+            tbody.appendChild(tr);
+          });
+          // Add a blank row at the end so they can easily add more
+          const blankRow = document.createElement('tr');
+          blankRow.innerHTML = `<td><input type="text" placeholder="Add another item..." oninput="updatePreview()"></td>
+            <td><input type="number" class="line-cost" step="0.01" placeholder="0.00" oninput="updatePreview()"></td>`;
+          tbody.appendChild(blankRow);
+        }
+
+        // Append next service note to advisory notes if present
+        if(d.nextServiceDate || d.nextServiceMileage) {
+          const existing = document.getElementById('e-notes').value;
+          const nextLine = '\n\nNext service due: ' +
+            [d.nextServiceDate, d.nextServiceMileage ? d.nextServiceMileage + ' miles' : ''].filter(Boolean).join(' · ');
+          document.getElementById('e-notes').value = (existing + nextLine).trim();
+        }
+
+        // Clear the sessionStorage item — one use only
+        sessionStorage.removeItem('invoice_prefill');
+
+        // Show a subtle confirmation banner
+        showPrefillBanner();
+
+      } catch(e) {
+        console.warn('Could not parse invoice prefill data:', e);
+      }
+    }
+
+    updatePreview();
+  };
+
+  function showPrefillBanner() {
+    const banner = document.getElementById('prefillBanner');
+    if(banner) banner.classList.add('show');
+    // Auto-hide after 8 seconds
+    setTimeout(() => { if(banner) banner.classList.remove('show'); }, 8000);
+  }
+
+  function fmtDateInput(d) {
+    return d.toISOString().split('T')[0];
+  }
+
+  function fmtDateDisplay(str) {
+    if(!str) return '—';
+    try {
+      const d = new Date(str + 'T00:00:00');
+      return d.toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    } catch(e) { return str; }
+  }
+
+  function addLineItem() {
+    const tbody = document.getElementById('lineItemsBody');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><input type="text" placeholder="Description of work" oninput="updatePreview()"></td>
+      <td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td>`;
+    tbody.appendChild(tr);
+  }
+
+  function updatePreview() {
+    // Customer
+    const customer = document.getElementById('e-customer').value.trim();
+    const phone = document.getElementById('e-phone').value.trim();
+    const email = document.getElementById('e-email').value.trim();
+    let custHTML = `<strong>${customer||'—'}</strong>`;
+    if(phone) custHTML += `<br>${phone}`;
+    if(email) custHTML += `<br>${email}`;
+    document.getElementById('p-customer').innerHTML = custHTML;
+
+    // Vehicle
+    document.getElementById('p-reg').textContent = document.getElementById('e-reg').value.toUpperCase() || '—';
+    document.getElementById('p-model').textContent = document.getElementById('e-model').value || '—';
+    document.getElementById('p-tech').textContent = document.getElementById('e-tech').value || '—';
+
+    // Ref
+    document.getElementById('p-ref').textContent = '#' + (document.getElementById('e-ref').value || 'INV-0001');
+
+    // Dates
+    const dateStr = document.getElementById('e-date').value;
+    const dueStr = document.getElementById('e-due').value;
+    document.getElementById('p-date').textContent = fmtDateDisplay(dateStr);
+    document.getElementById('p-due').textContent = fmtDateDisplay(dueStr);
+    document.getElementById('p-due-inline').textContent = fmtDateDisplay(dueStr);
+
+    // Status
+    const status = document.getElementById('e-status').value;
+    const statusLabels = { unpaid:'Unpaid', paid:'Paid', overdue:'Overdue' };
+    const badge = document.getElementById('p-status-badge');
+    badge.className = 'status-badge ' + status;
+    badge.textContent = statusLabels[status] || status;
+    document.getElementById('p-status-info').textContent = statusLabels[status] || status;
+
+    // Line items
+    const rows = document.querySelectorAll('#lineItemsBody tr');
+    let subtotal = 0;
+    let lineHTML = '';
+    rows.forEach(row => {
+      const desc = row.querySelector('td:first-child input');
+      const cost = row.querySelector('td:last-child input');
+      const d = desc ? desc.value.trim() : '';
+      const c = cost ? parseFloat(cost.value)||0 : 0;
+      if(d) {
+        subtotal += c;
+        lineHTML += `<tr><td style="padding:12px 14px;border-bottom:1px solid #f4f4f4;font-size:13px;color:#333;">${d}</td>
+          <td style="padding:12px 14px;border-bottom:1px solid #f4f4f4;text-align:right;font-weight:600;color:#111;">${c>0?'£'+c.toFixed(2):'Included'}</td></tr>`;
+      }
+    });
+
+    if(!lineHTML) {
+      lineHTML = `<tr><td colspan="2" style="padding:12px 14px;color:#999;font-style:italic;">No line items added yet</td></tr>`;
+    }
+
+    document.getElementById('p-line-items').innerHTML = lineHTML;
+
+    const vat = subtotal * 0.2;
+    const total = subtotal + vat;
+    document.getElementById('p-subtotal').textContent = '£' + subtotal.toFixed(2);
+    document.getElementById('p-vat').textContent = '£' + vat.toFixed(2);
+    document.getElementById('p-total').textContent = '£' + total.toFixed(2);
+
+    // Notes
+    const notes = document.getElementById('e-notes').value.trim();
+    const notesSection = document.getElementById('p-notes-section');
+    if(notes) {
+      document.getElementById('p-notes').textContent = notes;
+      notesSection.style.display = 'block';
+    } else {
+      notesSection.style.display = 'none';
+    }
+  }
+
+  function emailInvoice() {
+    const customer = document.getElementById('e-customer').value.trim();
+    const email = document.getElementById('e-email').value.trim();
+    const reg = document.getElementById('e-reg').value.trim();
+    const ref = document.getElementById('e-ref').value.trim();
+
+    if(!email) {
+      alert('Please enter the customer\'s email address first.');
+      return;
+    }
+
+    const subject = encodeURIComponent(`Invoice ${ref} — Auto Services${reg?' — '+reg:''}`);
+    const body = encodeURIComponent(
+      `Dear ${customer||'Customer'},\n\n` +
+      `Please find your invoice attached for the recent work carried out on your vehicle${reg?' ('+reg+')':''}.\n\n` +
+      `If you have any questions, please don't hesitate to get in touch.\n\n` +
+      `Many thanks,\nAuto Services\n01234 567 890\nhello@yourgarage.co.uk`
+    );
+
+    window.open(`mailto:${email}?subject=${subject}&body=${body}`);
+  }
+
+  function resetForm() {
+    if(!confirm('Clear all fields and start a new invoice?')) return;
+    document.querySelectorAll('.edit-panel input, .edit-panel select, .edit-panel textarea').forEach(el => {
+      if(el.tagName === 'SELECT') el.selectedIndex = 0;
+      else el.value = '';
+    });
+
+    // Reset line items to 3 blank rows
+    document.getElementById('lineItemsBody').innerHTML = `
+      <tr><td><input type="text" placeholder="e.g. Full car service inc. oil &amp; filter" oninput="updatePreview()"></td><td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td></tr>
+      <tr><td><input type="text" placeholder="e.g. Front brake discs &amp; pads" oninput="updatePreview()"></td><td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td></tr>
+      <tr><td><input type="text" placeholder="e.g. Vehicle health check" oninput="updatePreview()"></td><td><input type="number" placeholder="0.00" class="line-cost" oninput="updatePreview()"></td></tr>`;
+
+    const today = new Date();
+    const due = new Date(today.getTime() + 14*24*60*60*1000);
+    document.getElementById('e-date').value = fmtDateInput(today);
+    document.getElementById('e-due').value = fmtDateInput(due);
+    const ref = 'INV-' + today.getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('e-ref').value = ref;
+    updatePreview();
+  }
+</script>
 </body>
 </html>
