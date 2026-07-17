@@ -505,6 +505,10 @@
       <input type="text" id="e-model" placeholder="Ford Focus 1.5 TDCI" oninput="updatePreview()">
     </div>
     <div class="edit-field">
+      <label>Current Mileage</label>
+      <input type="text" id="e-mileage" placeholder="e.g. 42,500" oninput="updatePreview()">
+    </div>
+    <div class="edit-field">
       <label>Technician</label>
       <input type="text" id="e-tech" placeholder="e.g. Stephen H." oninput="updatePreview()">
     </div>
@@ -614,6 +618,10 @@
       <div class="inv-info-value" id="p-due">—</div>
     </div>
     <div>
+      <div class="inv-info-label">Current Mileage</div>
+      <div class="inv-info-value" id="p-mileage">—</div>
+    </div>
+    <div>
       <div class="inv-info-label">Status</div>
       <div class="inv-info-value" id="p-status-info">Unpaid</div>
     </div>
@@ -712,8 +720,9 @@
         // Fill all text fields — use empty string fallback so fields clear cleanly
         document.getElementById('e-customer').value = d.customer || '';
         document.getElementById('e-reg').value      = (d.reg || '').toUpperCase();
-        document.getElementById('e-model').value    = d.model || '';
-        document.getElementById('e-tech').value     = d.tech  || '';
+        document.getElementById('e-model').value    = d.model   || '';
+        document.getElementById('e-tech').value     = d.tech    || '';
+        document.getElementById('e-mileage').value  = d.mileage || '';
         document.getElementById('e-phone').value    = d.phone || '';
         document.getElementById('e-email').value    = d.email || '';
         document.getElementById('e-notes').value    = d.notes || '';
@@ -800,6 +809,8 @@
     document.getElementById('p-reg').textContent = document.getElementById('e-reg').value.toUpperCase() || '—';
     document.getElementById('p-model').textContent = document.getElementById('e-model').value || '—';
     document.getElementById('p-tech').textContent = document.getElementById('e-tech').value || '—';
+    const mileage = document.getElementById('e-mileage').value.trim();
+    document.getElementById('p-mileage').textContent = mileage ? mileage + ' miles' : '—';
 
     // Ref
     document.getElementById('p-ref').textContent = '#' + (document.getElementById('e-ref').value || 'INV-0001');
