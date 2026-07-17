@@ -222,7 +222,7 @@
     color: #111;
   }
 
-  .inv-total-row.vat { color: #999; font-size: 12px; }
+  
 
   /* Status bar */
   .inv-status-bar {
@@ -542,12 +542,12 @@
   </div>
 
   <div style="margin-bottom:0.5rem;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-bottom:0.5rem;">Line Items (Description + Price exc. VAT)</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-bottom:0.5rem;">Line Items</div>
     <table class="line-items-table">
       <thead>
         <tr>
           <th style="width:75%">Description</th>
-          <th style="width:25%">Price (£ exc. VAT)</th>
+          <th style="width:25%">Price (£)</th>
         </tr>
       </thead>
       <tbody id="lineItemsBody">
@@ -630,7 +630,7 @@
       <div class="inv-address-label">From</div>
       <div class="inv-address-text">
         <strong>S.M.E Automotive Servicing</strong><br>
-        s.m.eautomativeservicing@gmail.com
+        S.M.EAutomativeServicing@outlook.com
       </div>
     </div>
   </div>
@@ -652,16 +652,8 @@
 
   <div class="inv-totals">
     <div class="inv-totals-box">
-      <div class="inv-total-row">
-        <span>Subtotal (exc. VAT)</span>
-        <span id="p-subtotal">£0.00</span>
-      </div>
-      <div class="inv-total-row vat">
-        <span>VAT (20%)</span>
-        <span id="p-vat">£0.00</span>
-      </div>
       <div class="inv-total-row final">
-        <span>Total Due</span>
+        <span>Total Due (inc. VAT)</span>
         <span id="p-total">£0.00</span>
       </div>
     </div>
@@ -680,7 +672,7 @@
   <div class="inv-footer">
     <div class="inv-footer-left">
       S.M.E Automotive Servicing<br>
-      s.m.eautomativeservicing@gmail.com
+      S.M.EAutomativeServicing@outlook.com
     </div>
     <div class="inv-footer-right">
       <div class="inv-footer-warranty">
@@ -849,11 +841,7 @@
 
     document.getElementById('p-line-items').innerHTML = lineHTML;
 
-    const vat = subtotal * 0.2;
-    const total = subtotal + vat;
-    document.getElementById('p-subtotal').textContent = '£' + subtotal.toFixed(2);
-    document.getElementById('p-vat').textContent = '£' + vat.toFixed(2);
-    document.getElementById('p-total').textContent = '£' + total.toFixed(2);
+    document.getElementById('p-total').textContent = '£' + subtotal.toFixed(2);
 
     // Notes
     const notes = document.getElementById('e-notes').value.trim();
@@ -882,7 +870,7 @@
       `Dear ${customer||'Customer'},\n\n` +
       `Please find your invoice attached for the recent work carried out on your vehicle${reg?' ('+reg+')':''}.\n\n` +
       `If you have any questions, please don't hesitate to get in touch.\n\n` +
-      `Many thanks,\nS.M.E Automotive Servicing\ns.m.eautomativeservicing@gmail.com`
+      `Many thanks,\nS.M.E Automotive Servicing\nS.M.EAutomativeServicing@outlook.com`
     );
 
     window.open(`mailto:${email}?subject=${subject}&body=${body}`);
